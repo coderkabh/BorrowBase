@@ -1,6 +1,8 @@
 package connection;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DatabaseConnection {
     private static final String URL = "";
@@ -12,4 +14,17 @@ public class DatabaseConnection {
         return connection;
     }
 
+    public boolean establishConnection() throws SQLException {
+        connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        return connection != null;
+    }
+
+    public void printConnectionStatus() {
+        if (getConnection() != null) {
+            System.out.println("Connection is active");
+        } else {
+            System.out.println("Connection is inactive");
+        }
+
+    }
 }
