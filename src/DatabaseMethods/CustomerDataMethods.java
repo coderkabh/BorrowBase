@@ -32,11 +32,7 @@ public class CustomerDataMethods {
 
 
     public boolean isNewEnterInCustomerCreated() {
-        if (isQueryPerformed) {
-            return true;
-        } else {
-            return false;
-        }
+        return isQueryPerformed;
     }
 
     public String getCustomerIDFromUser() {

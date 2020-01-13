@@ -7,14 +7,17 @@
  */
 package data;
 
+import java.util.Scanner;
+
 public class Transaction {
     private String customerID;
-    private int deposited;
+    Scanner scanner = new Scanner(System.in);
+    //    private int deposited;
     private int remAmt;
 
-    public Transaction(String customerID, int deposited, int remAmt) {
+    public Transaction(String customerID, int remAmt) {
         this.customerID = customerID;
-        this.deposited = deposited;
+//        this.deposited = deposited;
         this.remAmt = remAmt;
     }
 
@@ -26,13 +29,13 @@ public class Transaction {
         this.customerID = customerID;
     }
 
-    public int getDeposited() {
+    /*public int getDeposited() {
         return deposited;
-    }
+    }*/
 
-    public void setDeposited(int deposited) {
+   /* public void setDeposited(int deposited) {
         this.deposited = deposited;
-    }
+    }*/
 
     public int getRemAmt() {
         return remAmt;
@@ -40,5 +43,9 @@ public class Transaction {
 
     public void setRemAmt(int remAmt) {
         this.remAmt = remAmt;
+    }
+
+    public int getNewAmountFromCustomer() {
+        return scanner.nextInt();
     }
 }
