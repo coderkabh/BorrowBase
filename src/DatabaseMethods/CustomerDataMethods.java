@@ -55,7 +55,7 @@ public class CustomerDataMethods {
         return scanner.nextLine();
     }
 
-    private ResultSet getAllOfCustomer(Connection connection) throws SQLException {
+    public ResultSet getAllOfCustomer(Connection connection) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Customer;");
         return preparedStatement.executeQuery();
     }

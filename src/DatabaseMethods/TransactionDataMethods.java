@@ -48,8 +48,16 @@ public class TransactionDataMethods {
         return isQueryPerformed1;
     }
 
-    public boolean isalterTransactionDataByDepositionPerformed() {
+    public boolean isAlterTransactionDataByDepositionPerformed() {
         return isQueryPerformed2;
+    }
+
+    public String getCustomerIDFromUser() {
+        return scanner.nextLine();
+    }
+
+    public int getRemAmtFromUser() {
+        return scanner.nextInt();
     }
 
 }
