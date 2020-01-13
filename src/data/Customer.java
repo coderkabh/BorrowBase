@@ -1,3 +1,9 @@
+/*
+ * Created by IntelliJ IDEA.
+ * User: Kanishk
+ * Date: 11/01/20
+ * Time: 11:40 PM
+ */
 package data;
 
 public class Customer {

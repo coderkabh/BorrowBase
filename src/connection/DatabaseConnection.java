@@ -1,3 +1,9 @@
+/*
+ * Created by IntelliJ IDEA.
+ * User: Kanishk
+ * Date: 11/01/20
+ * Time: 11:23 PM
+ */
 package connection;
 
 import java.sql.Connection;
@@ -25,6 +31,12 @@ public class DatabaseConnection {
         } else {
             System.out.println("Connection is inactive");
         }
-
     }
+
+    public boolean getConnectionStatus() throws SQLException {
+        boolean response = false;
+        if (getConnection() != null) response = true;
+        return response;
+    }
+
 }

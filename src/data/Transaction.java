@@ -1,22 +1,29 @@
+
+/*
+ * Created by IntelliJ IDEA.
+ * User: Kanishk
+ * Date: 11/01/20
+ * Time: 11:44 PM
+ */
 package data;
 
 public class Transaction {
-    private String c_id;
+    private String customerID;
     private int deposited;
-    private int rem_amt;
+    private int remAmt;
 
-    public Transaction(String c_id, int deposited, int rem_amt) {
-        this.c_id = c_id;
+    public Transaction(String customerID, int deposited, int remAmt) {
+        this.customerID = customerID;
         this.deposited = deposited;
-        this.rem_amt = rem_amt;
+        this.remAmt = remAmt;
     }
 
-    public String getC_id() {
-        return c_id;
+    public String getCustomerID() {
+        return customerID;
     }
 
-    public void setC_id(String c_id) {
-        this.c_id = c_id;
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
     }
 
     public int getDeposited() {
@@ -27,11 +34,11 @@ public class Transaction {
         this.deposited = deposited;
     }
 
-    public int getRem_amt() {
-        return rem_amt;
+    public int getRemAmt() {
+        return remAmt;
     }
 
-    public void setRem_amt(int rem_amt) {
-        this.rem_amt = rem_amt;
+    public void setRemAmt(int remAmt) {
+        this.remAmt = remAmt;
     }
 }
