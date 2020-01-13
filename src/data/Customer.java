@@ -1,47 +1,47 @@
 package data;
 
 public class Customer {
-    private String c_id;
-    private String c_name;
-    private String c_add;
-    private String c_phno;
+    private String customerID;
+    private String customerName;
+    private String customerAdd;
+    private String customerPhno;
 
-    public Customer(String c_id, String c_name, String c_add, String c_phno) {
-        this.c_id = c_id;
-        this.c_name = c_name;
-        this.c_add = c_add;
-        this.c_phno = c_phno;
+    public Customer(String customerID, String customerName, String customerAdd, String customerPhno) {
+        this.customerID = customerID;
+        this.customerName = customerName;
+        this.customerAdd = customerAdd;
+        this.customerPhno = customerPhno;
     }
 
-    public String getC_id() {
-        return c_id;
+    public String getCustomerID() {
+        return customerID;
     }
 
-    public void setC_id(String c_id) {
-        this.c_id = c_id;
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
     }
 
-    public String getC_name() {
-        return c_name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setC_name(String c_name) {
-        this.c_name = c_name;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getC_add() {
-        return c_add;
+    public String getCustomerAdd() {
+        return customerAdd;
     }
 
-    public void setC_add(String c_add) {
-        this.c_add = c_add;
+    public void setCustomerAdd(String customerAdd) {
+        this.customerAdd = customerAdd;
     }
 
-    public String getC_phno() {
-        return c_phno;
+    public String getCustomerPhno() {
+        return customerPhno;
     }
 
-    public void setC_phno(String c_phno) {
-        this.c_phno = c_phno;
+    public void setCustomerPhno(String customerPhno) {
+        this.customerPhno = customerPhno;
     }
 }
