@@ -60,6 +60,8 @@ public class BorrowBaseMain {
 
                     transactionDataMethods.addNewTransactionData(DatabaseConnection.getConnection(), transaction);
                 } catch (SQLException e) {
+                    System.out.println("SQL Exception occurred");
+                } catch (Exception e) {
                     System.out.println("OOPS! Something went wrong");
                 }
             } else if (choice == 2) {
@@ -70,12 +72,16 @@ public class BorrowBaseMain {
                     Transaction transaction = new Transaction(customerID2, remAmt);
                     transactionDataMethods.alterTransactionDataByDeposition(DatabaseConnection.getConnection(), transaction);
                 } catch (SQLException e) {
+                    System.out.println("SQL Exception occurred");
+                } catch (Exception e) {
                     System.out.println("OOPS! Something went wrong");
                 }
             } else if (choice == 3) {
                 try {
                     customerDataMethods.getAllOfCustomer(DatabaseConnection.getConnection());
                 } catch (SQLException e) {
+                    System.out.println("SQL Exception occurred");
+                } catch (Exception e) {
                     System.out.println("OOPS! Something went wrong");
                 }
 
@@ -90,7 +96,9 @@ public class BorrowBaseMain {
                     try {
                         System.out.println(databaseConnection.establishConnection());
                     } catch (SQLException e) {
-                        System.out.println("OOPS! Something went wrong in choice 4");
+                        System.out.println("SQL Exception occurred");
+                    } catch (Exception e) {
+                        System.out.println("OOPS! Something went wrong");
                     }
                 } else {
                     System.out.println("Sorry wrong choice entered");
