@@ -81,9 +81,9 @@ public class BorrowBaseMain {
 
             } else if (choice == 4) {
                 System.out.println("\n\nWhat would you like to do :");
-                subChoice = scanner.nextInt();
                 System.out.println("1. Check Connection status");
                 System.out.println("2. Re-establish Connection");
+                subChoice = scanner.nextInt();
                 if (subChoice == 1) {
                     databaseConnection.printConnectionStatus();
                 } else if (subChoice == 2) {
