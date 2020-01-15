@@ -34,6 +34,7 @@ public class BorrowBaseMain {
         }
 
 
+
         do {
 
             System.out.println("Enter your choice :");
@@ -93,7 +94,6 @@ public class BorrowBaseMain {
             } else if (choice == 3) {
                 try {
                     customerDataMethods.getAllOfCustomer(DatabaseConnection.getConnection());
-                    //Prints all data in customer table
                 } catch (SQLException e) {
                     System.out.println("SQL Exception occurred");
                 } catch (Exception e) {
@@ -120,7 +120,7 @@ public class BorrowBaseMain {
                 }
             } else if (choice == 5) {
                 System.out.println("Good Bye");
-                scanner.next();
+                //scanner.next();
                 System.exit(0);
             } else {
                 System.out.println("Sorry wrong choice entered");
