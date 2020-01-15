@@ -10,8 +10,8 @@ package data;
 import java.util.Scanner;
 
 public class Transaction {
-    private String customerID;
     Scanner scanner = new Scanner(System.in);
+    private String customerID;
     //    private int deposited;
     private int remAmt;
 
