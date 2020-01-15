@@ -19,13 +19,12 @@ public class CustomerDataMethods {
 
         String queryStatement = "INSERT INTO CUSTOMER (c_id,c_name,c_add,c_phno) VALUES (?,?,?,?);";
         PreparedStatement preparedStatement = connection.prepareStatement(queryStatement);
-        preparedStatement.setString(1, customer.getCustomerID());
-        preparedStatement.setString(2, customer.getCustomerName());
-        preparedStatement.setString(3, customer.getCustomerAdd());
-        preparedStatement.setString(4, customer.getCustomerPhno());
+        preparedStatement.setString(1, customer.getCustomerID().trim());
+        preparedStatement.setString(2, customer.getCustomerName().trim());
+        preparedStatement.setString(3, customer.getCustomerAdd().trim());
+        preparedStatement.setString(4, customer.getCustomerPhno().trim());
 
-        isQueryPerformed = preparedStatement.executeUpdate() >= 1;
-
+        if (preparedStatement.executeUpdate() >= 1) isQueryPerformed = true;
     }
 
 
