@@ -8,10 +8,7 @@ package DatabaseMethods;
 
 import data.Customer;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 
 public class CustomerDataMethods {
@@ -19,6 +16,7 @@ public class CustomerDataMethods {
     private boolean isQueryPerformed = false;
 
     public void addNewCustomer(Connection connection, Customer customer) throws SQLException {
+
         String queryStatement = "INSERT INTO CUSTOMER (c_id,c_name,c_add,c_phno) VALUES (?,?,?,?);";
         PreparedStatement preparedStatement = connection.prepareStatement(queryStatement);
         preparedStatement.setString(1, customer.getCustomerID());
@@ -55,9 +53,18 @@ public class CustomerDataMethods {
         return scanner.nextLine();
     }
 
-    public ResultSet getAllOfCustomer(Connection connection) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Customer;");
-        return preparedStatement.executeQuery();
+    public void getAllOfCustomer(Connection connection) throws SQLException {
+        Statement statement = connection.createStatement();
+        System.out.println("ID              NAME                ADDRESS             CONTACT");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM Customer;");
+
+        while (resultSet.next()) {
+            String cID = resultSet.getString(1);
+            String cName = resultSet.getString(2);
+            String cAdd = resultSet.getString(3);
+            String cPhno = resultSet.getString(4);
+            System.out.println(cID + "           " + cName + "          " + cAdd + "           " + cPhno);
+        }
     }
 
 }

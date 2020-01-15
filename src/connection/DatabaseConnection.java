@@ -20,7 +20,7 @@ public class DatabaseConnection {
         return connection;
     }
 
-    public boolean establishConnection() throws SQLException, ClassNotFoundException {
+    public boolean establishConnection() throws SQLException {
         connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         return connection != null;
     }

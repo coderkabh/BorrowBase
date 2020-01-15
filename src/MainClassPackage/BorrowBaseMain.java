@@ -27,6 +27,12 @@ public class BorrowBaseMain {
         CustomerDataMethods customerDataMethods = new CustomerDataMethods();
         TransactionDataMethods transactionDataMethods = new TransactionDataMethods();
 
+        try {
+            databaseConnection.establishConnection();
+        } catch (SQLException e) {
+            System.out.println("Connection not Established ");
+        }
+
 
         do {
 
@@ -45,8 +51,14 @@ public class BorrowBaseMain {
                     String customerName = customerDataMethods.getCustomerNameFromUser();
                     String customerAdd = customerDataMethods.getCustomerAddFromUser();
                     String customerPhno = customerDataMethods.getCustomerPhnoFromUser();
+                    //These 4 lines takes input from user by calling those getter methods
+
                     Customer customer = new Customer(customerID, customerName, customerAdd, customerPhno);
+                    //Constructor to initialize the Customer class
+
                     customerDataMethods.addNewCustomer(DatabaseConnection.getConnection(), customer);
+                    //Main functionality of the task
+
 
                     if (customerDataMethods.isNewEnterInCustomerCreated()) {
                         System.out.println("Entry in Customer table created successfully");
@@ -54,9 +66,9 @@ public class BorrowBaseMain {
                         System.out.println("Entry not created");
                     }
 
-                    String customerID2 = transactionDataMethods.getCustomerIDFromUser();
                     int remAmt = transactionDataMethods.getRemAmtFromUser();
-                    Transaction transaction = new Transaction(customerID2, remAmt);
+                    //Takes the remaining balance for the account
+                    Transaction transaction = new Transaction(customerID, remAmt);
 
                     transactionDataMethods.addNewTransactionData(DatabaseConnection.getConnection(), transaction);
                 } catch (SQLException e) {
@@ -70,7 +82,9 @@ public class BorrowBaseMain {
                     String customerID2 = transactionDataMethods.getCustomerIDFromUser();
                     int remAmt = transactionDataMethods.getRemAmtFromUser();
                     Transaction transaction = new Transaction(customerID2, remAmt);
+                    //Takes values from user
                     transactionDataMethods.alterTransactionDataByDeposition(DatabaseConnection.getConnection(), transaction);
+                    //Changes the data in Database
                 } catch (SQLException e) {
                     System.out.println("SQL Exception occurred");
                 } catch (Exception e) {
@@ -79,6 +93,7 @@ public class BorrowBaseMain {
             } else if (choice == 3) {
                 try {
                     customerDataMethods.getAllOfCustomer(DatabaseConnection.getConnection());
+                    //Prints all data in customer table
                 } catch (SQLException e) {
                     System.out.println("SQL Exception occurred");
                 } catch (Exception e) {
