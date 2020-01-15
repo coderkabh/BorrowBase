@@ -8,9 +8,7 @@ package DatabaseMethods;
 
 import data.Transaction;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 
 public class TransactionDataMethods {
@@ -60,4 +58,14 @@ public class TransactionDataMethods {
         return scanner.nextInt();
     }
 
+    public void getAllTransactionData(Connection connection) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM Transaction");
+        System.out.println("Customer_ID" + "  " + "Borrow");
+        while (resultSet.next()) {
+            String cID = resultSet.getString(1);
+            int remAmt = resultSet.getInt(2);
+            System.out.println(cID + "            " + remAmt);
+        }
+    }
 }

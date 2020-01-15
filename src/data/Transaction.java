@@ -48,4 +48,5 @@ public class Transaction {
     public int getNewAmountFromCustomer() {
         return scanner.nextInt();
     }
+
 }

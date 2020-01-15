@@ -41,8 +41,9 @@ public class BorrowBaseMain {
             System.out.println("1. Add new entry of Customer ");
             System.out.println("2. Modify account of Customer ");
             System.out.println("3. Check current status of all Accounts ");
-            System.out.println("4. Developer Settings ");
-            System.out.println("5. Exit");
+            System.out.println("4. See all users data");
+            System.out.println("5. Developer Settings ");
+            System.out.println("6. Exit");
             choice = scanner.nextInt();
 
             if (choice == 1) {
@@ -93,6 +94,14 @@ public class BorrowBaseMain {
                 }
             } else if (choice == 3) {
                 try {
+                    transactionDataMethods.getAllTransactionData(DatabaseConnection.getConnection());
+                } catch (SQLException e) {
+                    System.out.println("SQL Exception occurred");
+                } catch (Exception e) {
+                    System.out.println("OOPS! Something went wrong");
+                }
+            } else if (choice == 4) {
+                try {
                     customerDataMethods.getAllOfCustomer(DatabaseConnection.getConnection());
                 } catch (SQLException e) {
                     System.out.println("SQL Exception occurred");
@@ -100,7 +109,7 @@ public class BorrowBaseMain {
                     System.out.println("OOPS! Something went wrong");
                 }
 
-            } else if (choice == 4) {
+            } else if (choice == 5) {
                 System.out.println("\n\nWhat would you like to do :");
                 System.out.println("1. Check Connection status");
                 System.out.println("2. Re-establish Connection");
@@ -118,14 +127,14 @@ public class BorrowBaseMain {
                 } else {
                     System.out.println("Sorry wrong choice entered");
                 }
-            } else if (choice == 5) {
-                System.out.println("Good Bye");
+            } else if (choice == 6) {
+                System.out.println("Good Bye, Have a nice day");
                 //scanner.next();
                 System.exit(0);
             } else {
                 System.out.println("Sorry wrong choice entered");
             }
-        } while (choice != 5);
+        } while (choice != 6);
 
     }
 }
