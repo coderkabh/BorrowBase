@@ -88,9 +88,9 @@ public class BorrowBaseMain {
                     databaseConnection.printConnectionStatus();
                 } else if (subChoice == 2) {
                     try {
-                        databaseConnection.establishConnection();
+                        System.out.println(databaseConnection.establishConnection());
                     } catch (SQLException e) {
-                        System.out.println("OOPS! Something went wrong");
+                        System.out.println("OOPS! Something went wrong in choice 4");
                     }
                 } else {
                     System.out.println("Sorry wrong choice entered");
