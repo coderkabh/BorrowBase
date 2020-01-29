@@ -27,9 +27,9 @@ public class DatabaseConnection {
 
     public void printConnectionStatus() {
         if (getConnection() != null) {
-            System.out.println("\nConnection is active\n\n");
+            System.out.println("\nConnection is active\n");
         } else {
-            System.out.println("\nConnection is inactive\n\n");
+            System.out.println("\nConnection is inactive\n");
         }
     }
 

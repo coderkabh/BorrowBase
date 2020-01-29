@@ -23,8 +23,8 @@ public class CustomerDataMethods {
         preparedStatement.setString(2, customer.getCustomerName().trim());
         preparedStatement.setString(3, customer.getCustomerAdd().trim());
         preparedStatement.setString(4, customer.getCustomerPhno().trim());
-
-        if (preparedStatement.executeUpdate() >= 1) isQueryPerformed = true;
+        int value = preparedStatement.executeUpdate();
+        if (value >= 1) isQueryPerformed = true;
     }
 
 

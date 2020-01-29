@@ -50,4 +50,6 @@ public class Customer {
     public void setCustomerPhno(String customerPhno) {
         this.customerPhno = customerPhno;
     }
+
+
 }

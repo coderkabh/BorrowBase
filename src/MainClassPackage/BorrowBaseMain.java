@@ -1,4 +1,4 @@
-/*
+/*1
  * Created by IntelliJ IDEA.
  * User: Kanishk
  * Date: 13/01/20
@@ -52,7 +52,13 @@ public class BorrowBaseMain {
                     String customerName = customerDataMethods.getCustomerNameFromUser();
                     String customerAdd = customerDataMethods.getCustomerAddFromUser();
                     String customerPhno = customerDataMethods.getCustomerPhnoFromUser();
-                    //These 4 lines takes input from user by calling those getter methods
+/*
+                    These 4 lines takes input from user by calling those getter methods
+                    System.out.println(customerID);
+                    System.out.println(customerName);
+                    System.out.println(customerAdd);
+                    System.out.println(customerPhno);
+*/
 
                     Customer customer = new Customer(customerID, customerName, customerAdd, customerPhno);
                     //Constructor to initialize the Customer class

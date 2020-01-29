@@ -22,8 +22,8 @@ public class TransactionDataMethods {
         preparedStatement.setString(1, transaction.getCustomerID());
 //        preparedStatement.setInt(2,transaction.getDeposited());
         preparedStatement.setInt(2, transaction.getRemAmt());
-
-        isQueryPerformed1 = preparedStatement.executeUpdate() >= 1;
+        int rowsAffected = preparedStatement.executeUpdate();
+        isQueryPerformed1 = rowsAffected >= 1;
 
     }
 
@@ -51,10 +51,12 @@ public class TransactionDataMethods {
     }
 
     public String getCustomerIDFromUser() {
+        System.out.println("Enter the ID of the Customer: ");
         return scanner.nextLine();
     }
 
     public int getRemAmtFromUser() {
+        System.out.println("Enter the Remaining amount of the Customer: ");
         return scanner.nextInt();
     }
 
