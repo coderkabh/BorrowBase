@@ -9,6 +9,7 @@ package MainClassPackage;
 import DatabaseMethods.AdminPrivilegeMethods;
 import DatabaseMethods.CustomerDataMethods;
 import DatabaseMethods.TransactionDataMethods;
+import DatabaseUsers.NaiveUsers;
 import connection.DatabaseConnection;
 import data.Customer;
 import data.Transaction;
@@ -120,7 +121,9 @@ public class BorrowBaseMain {
                 System.out.println("\n\nWhat would you like to do :");
                 System.out.println("1. Check Connection status");
                 System.out.println("2. Re-establish Connection");
-                System.out.println("3. Flush the all the tables");
+                System.out.println("3. Flush the database ");
+                System.out.println("4. Add new Database user");
+                System.out.println("5. Change Administrator");
                 subChoice = scanner.nextInt();
                 if (subChoice == 1) {
                     databaseConnection.printConnectionStatus();
@@ -135,13 +138,34 @@ public class BorrowBaseMain {
 
                 } else if (subChoice == 3) {
                     try {
-                        boolean isDeleted = adminPrivilegeMethods.deleteAllCustomerData(DatabaseConnection.getConnection());
-                        boolean isDeleted2 = adminPrivilegeMethods.deleteAllTransactionData(DatabaseConnection.getConnection());
-                        if (isDeleted && isDeleted) System.out.println("Database flushed successfully");
-                        else System.out.println("Couldn't flush");
+
+                        System.out.println("Remember once done it's not possible to revert back and undo changes.\n" +
+                                "It is advised to think twice before taking this step. We do not recommend you to flush" +
+                                "unless you want to have a fresh start or stop using this software. ");
+                        System.out.println("Would you like to Flush all data ?" +
+                                "\nType \"y\" or \"Y\" to continue or press any alphabet or numeric key for cancel.");
+                        scanner.nextLine();
+                        String string = scanner.nextLine();
+                        System.out.println(string);
+                        if (string.equalsIgnoreCase("y")) {
+                            boolean isDeleted = adminPrivilegeMethods.deleteAllCustomerData(DatabaseConnection.getConnection());
+                            boolean isDeleted2 = adminPrivilegeMethods.deleteAllTransactionData(DatabaseConnection.getConnection());
+                            if (isDeleted && isDeleted) System.out.println("Database flushed successfully");
+                            else System.out.println("Couldn't flush");
+                        } else System.out.println("Flush operation cancelled by user");
                     } catch (SQLException e) {
                         System.out.println("OOPS! Something went wrong" + e.getMessage());
                     }
+
+                } else if (subChoice == 4) {
+
+                    System.out.println("Enter the username");
+                    String username = scanner.nextLine();
+                    System.out.println("Enter the password");
+                    String password = scanner.nextLine();
+                    NaiveUsers naiveUsers = new NaiveUsers(username, password);
+
+                } else if (subChoice == 5) {
 
                 } else {
                     System.out.println("Sorry wrong choice entered");

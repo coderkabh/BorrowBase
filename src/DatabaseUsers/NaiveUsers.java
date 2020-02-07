@@ -6,9 +6,13 @@
  */
 package DatabaseUsers;
 
+import java.util.Scanner;
+
 public class NaiveUsers {
     private String username;
     private String password;
+
+    Scanner scanner = new Scanner(System.in);
 
     public NaiveUsers(String username, String password) {
         this.username = username;
@@ -25,5 +29,9 @@ public class NaiveUsers {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void createNewNaiveUser(NaiveUsers naiveUsers) {
+
     }
 }
