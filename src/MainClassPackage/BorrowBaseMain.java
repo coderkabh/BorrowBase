@@ -6,6 +6,7 @@
  */
 package MainClassPackage;
 
+import DatabaseMethods.AdminPrivilegeMethods;
 import DatabaseMethods.CustomerDataMethods;
 import DatabaseMethods.TransactionDataMethods;
 import connection.DatabaseConnection;
@@ -25,6 +26,7 @@ public class BorrowBaseMain {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         CustomerDataMethods customerDataMethods = new CustomerDataMethods();
         TransactionDataMethods transactionDataMethods = new TransactionDataMethods();
+        AdminPrivilegeMethods adminPrivilegeMethods = new AdminPrivilegeMethods();
 
         try {
             databaseConnection.establishConnection();
@@ -132,6 +134,14 @@ public class BorrowBaseMain {
                     }
 
                 } else if (subChoice == 3) {
+                    try {
+                        boolean isDeleted = adminPrivilegeMethods.deleteAllCustomerData(DatabaseConnection.getConnection());
+                        boolean isDeleted2 = adminPrivilegeMethods.deleteAllTransactionData(DatabaseConnection.getConnection());
+                        if (isDeleted && isDeleted) System.out.println("Database flushed successfully");
+                        else System.out.println("Couldn't flush");
+                    } catch (SQLException e) {
+                        System.out.println("OOPS! Something went wrong" + e.getMessage());
+                    }
 
                 } else {
                     System.out.println("Sorry wrong choice entered");
