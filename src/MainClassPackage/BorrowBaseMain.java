@@ -86,8 +86,8 @@ public class BorrowBaseMain {
                 try {
 
                     String customerID2 = transactionDataMethods.getCustomerIDFromUser();
-                    int remAmt = transactionDataMethods.getRemAmtFromUser();
-                    Transaction transaction = new Transaction(customerID2, remAmt);
+                    int newRemAmt = transactionDataMethods.getRemAmtFromUser();
+                    Transaction transaction = new Transaction(customerID2, newRemAmt);
                     //Takes values from user
                     transactionDataMethods.alterTransactionDataByDeposition(DatabaseConnection.getConnection(), transaction);
                     //Changes the data in Database

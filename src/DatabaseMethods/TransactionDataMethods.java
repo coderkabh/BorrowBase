@@ -32,12 +32,11 @@ public class TransactionDataMethods {
     }
 
     public void alterTransactionDataByDeposition(Connection connection, Transaction transaction) throws SQLException {
-        // UPDATE Transaction SET Transaction.rem_amt =(?) WHERE rem_amt = (?)
         String stringQuery = "UPDATE TRANSACTION set TRANSACTION.rem_amt = ? WHERE  c_id = ?;";
         PreparedStatement preparedStatement = connection.prepareStatement(stringQuery);
 
-        int newRemBal = transaction.getRemAmt() - transaction.getNewAmountFromCustomer();
-        preparedStatement.setInt(1, newRemBal);
+        //int newRemBal = transaction.getRemAmt() - transaction.getNewAmountFromCustomer();
+        preparedStatement.setInt(1, transaction.getRemAmt());
         preparedStatement.setString(2, transaction.getCustomerID());
 
         isQueryPerformed2 = preparedStatement.executeUpdate() >= 1;
@@ -72,4 +71,5 @@ public class TransactionDataMethods {
             System.out.println(cID + "            " + remAmt);
         }
     }
+
 }
