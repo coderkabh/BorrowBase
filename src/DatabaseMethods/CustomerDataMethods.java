@@ -15,6 +15,10 @@ public class CustomerDataMethods {
     Scanner scanner = new Scanner(System.in);
     private boolean isQueryPerformed = false;
 
+
+    /*
+     * a method that will add a new customer to the database
+     * */
     public void addNewCustomer(Connection connection, Customer customer) throws SQLException {
 
         String queryStatement = "INSERT INTO CUSTOMER (c_id,c_name,c_add,c_phno) VALUES (?,?,?,?);";
