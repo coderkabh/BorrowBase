@@ -17,7 +17,7 @@ public class TransactionDataMethods {
     Scanner scanner = new Scanner(System.in);
 
     public void addNewTransactionData(Connection connection, Transaction transaction) throws SQLException {
-        String stringQuery = "INSERT INTO Transaction (c_id, rem_amt) VALUES (?,?)";
+        String stringQuery = "INSERT INTO TRANSACTION (c_id, rem_amt) VALUES (?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(stringQuery);
         preparedStatement.setString(1, transaction.getCustomerID());
 //        preparedStatement.setInt(2,transaction.getDeposited());
@@ -32,11 +32,13 @@ public class TransactionDataMethods {
     }
 
     public void alterTransactionDataByDeposition(Connection connection, Transaction transaction) throws SQLException {
-        String stringQuery = "UPDATE Transaction SET Transaction.rem_amt =(?) WHERE rem_amt = (?)";
+        // UPDATE Transaction SET Transaction.rem_amt =(?) WHERE rem_amt = (?)
+        String stringQuery = "UPDATE TRANSACTION set TRANSACTION.rem_amt = ? WHERE  c_id = ?;";
         PreparedStatement preparedStatement = connection.prepareStatement(stringQuery);
-        preparedStatement.setInt(1, transaction.getNewAmountFromCustomer());
+
         int newRemBal = transaction.getRemAmt() - transaction.getNewAmountFromCustomer();
-        preparedStatement.setInt(2, newRemBal);
+        preparedStatement.setInt(1, newRemBal);
+        preparedStatement.setString(2, transaction.getCustomerID());
 
         isQueryPerformed2 = preparedStatement.executeUpdate() >= 1;
 
@@ -62,7 +64,7 @@ public class TransactionDataMethods {
 
     public void getAllTransactionData(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM Transaction");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM TRANSACTION");
         System.out.println("Customer_ID" + "  " + "Borrow");
         while (resultSet.next()) {
             String cID = resultSet.getString(1);

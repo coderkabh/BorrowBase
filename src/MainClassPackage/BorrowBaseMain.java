@@ -22,7 +22,6 @@ public class BorrowBaseMain {
         int subChoice = 0;
         Scanner scanner = new Scanner(System.in);
 
-
         DatabaseConnection databaseConnection = new DatabaseConnection();
         CustomerDataMethods customerDataMethods = new CustomerDataMethods();
         TransactionDataMethods transactionDataMethods = new TransactionDataMethods();
@@ -79,7 +78,7 @@ public class BorrowBaseMain {
 
                     transactionDataMethods.addNewTransactionData(DatabaseConnection.getConnection(), transaction);
                 } catch (SQLException e) {
-                    System.out.println("SQL Exception occurred");
+                    System.out.println("SQL Exception occurred" + e.getMessage());
                 } catch (Exception e) {
                     System.out.println("OOPS! Something went wrong");
                 }
@@ -93,7 +92,7 @@ public class BorrowBaseMain {
                     transactionDataMethods.alterTransactionDataByDeposition(DatabaseConnection.getConnection(), transaction);
                     //Changes the data in Database
                 } catch (SQLException e) {
-                    System.out.println("SQL Exception occurred");
+                    System.out.println("SQL Exception occurred" + e.getMessage());
                 } catch (Exception e) {
                     System.out.println("OOPS! Something went wrong");
                 }

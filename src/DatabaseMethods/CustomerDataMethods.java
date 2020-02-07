@@ -55,7 +55,7 @@ public class CustomerDataMethods {
     public void getAllOfCustomer(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
         System.out.println("ID              NAME                ADDRESS             CONTACT");
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM Customer;");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM CUSTOMER;");
 
         while (resultSet.next()) {
             String cID = resultSet.getString(1);
