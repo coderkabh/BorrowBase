@@ -91,6 +91,7 @@ public class BorrowBaseMain {
                     //Takes values from user
                     transactionDataMethods.alterTransactionDataByDeposition(DatabaseConnection.getConnection(), transaction);
                     //Changes the data in Database
+
                 } catch (SQLException e) {
                     System.out.println("SQL Exception occurred" + e.getMessage());
                 } catch (Exception e) {
@@ -117,6 +118,7 @@ public class BorrowBaseMain {
                 System.out.println("\n\nWhat would you like to do :");
                 System.out.println("1. Check Connection status");
                 System.out.println("2. Re-establish Connection");
+                System.out.println("3. Flush the all the tables");
                 subChoice = scanner.nextInt();
                 if (subChoice == 1) {
                     databaseConnection.printConnectionStatus();
@@ -128,9 +130,14 @@ public class BorrowBaseMain {
                     } catch (Exception e) {
                         System.out.println("OOPS! Something went wrong");
                     }
+
+                } else if (subChoice == 3) {
+
                 } else {
                     System.out.println("Sorry wrong choice entered");
                 }
+
+
             } else if (choice == 6) {
                 System.out.println("Good Bye, Have a nice day");
                 //scanner.next();

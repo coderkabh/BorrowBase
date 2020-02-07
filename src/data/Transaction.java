@@ -45,8 +45,5 @@ public class Transaction {
         this.remAmt = remAmt;
     }
 
-    public int getNewAmountFromCustomer() {
-        return scanner.nextInt();
-    }
 
 }

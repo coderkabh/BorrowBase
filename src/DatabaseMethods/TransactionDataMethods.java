@@ -43,6 +43,11 @@ public class TransactionDataMethods {
 
     }
 
+    public int getMoreBorrowAmountFromCustomer() {
+        System.out.println("Enter the debit amount of customer");
+        return scanner.nextInt();
+    }
+
     public boolean isAddNewTransactionDataInserted() {
         return isQueryPerformed1;
     }
@@ -71,5 +76,6 @@ public class TransactionDataMethods {
             System.out.println(cID + "            " + remAmt);
         }
     }
+
 
 }

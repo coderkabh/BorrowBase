@@ -6,6 +6,8 @@
  */
 package data;
 
+import java.util.Scanner;
+
 public class Customer {
     private String customerID;
     private String customerName;
@@ -18,6 +20,8 @@ public class Customer {
         this.customerAdd = customerAdd;
         this.customerPhno = customerPhno;
     }
+
+    Scanner scanner = new Scanner(System.in);
 
     public String getCustomerID() {
         return customerID;
@@ -50,6 +54,5 @@ public class Customer {
     public void setCustomerPhno(String customerPhno) {
         this.customerPhno = customerPhno;
     }
-
 
 }
