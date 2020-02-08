@@ -9,7 +9,10 @@ package MainClassPackage;
 import DatabaseMethods.AdminPrivilegeMethods;
 import DatabaseMethods.CustomerDataMethods;
 import DatabaseMethods.TransactionDataMethods;
+import DatabaseUsers.Administrator;
 import DatabaseUsers.NaiveUsers;
+import DatabaseUsersMethods.AdministratorDataMethods;
+import DatabaseUsersMethods.NaiveUsersDataMethods;
 import connection.DatabaseConnection;
 import data.Customer;
 import data.Transaction;
@@ -28,6 +31,8 @@ public class BorrowBaseMain {
         CustomerDataMethods customerDataMethods = new CustomerDataMethods();
         TransactionDataMethods transactionDataMethods = new TransactionDataMethods();
         AdminPrivilegeMethods adminPrivilegeMethods = new AdminPrivilegeMethods();
+        NaiveUsersDataMethods naiveUsersDataMethods = new NaiveUsersDataMethods();
+        AdministratorDataMethods administratorDataMethods = new AdministratorDataMethods();
 
         try {
             databaseConnection.establishConnection();
@@ -123,7 +128,7 @@ public class BorrowBaseMain {
                 System.out.println("2. Re-establish Connection");
                 System.out.println("3. Flush the database ");
                 System.out.println("4. Add new Database user");
-                System.out.println("5. Change Administrator");
+                System.out.println("5. Add new Administrator");
                 subChoice = scanner.nextInt();
                 if (subChoice == 1) {
                     databaseConnection.printConnectionStatus();
@@ -158,14 +163,35 @@ public class BorrowBaseMain {
                     }
 
                 } else if (subChoice == 4) {
-
+                    scanner.nextLine();
                     System.out.println("Enter the username");
                     String username = scanner.nextLine();
                     System.out.println("Enter the password");
                     String password = scanner.nextLine();
                     NaiveUsers naiveUsers = new NaiveUsers(username, password);
+                    try {
+                        boolean isQueryPerformed;
+                        isQueryPerformed = naiveUsersDataMethods.addNewNaiveUser(DatabaseConnection.getConnection(), naiveUsers);
+                        if (isQueryPerformed) System.out.println("New Naive user set successfully");
+                    } catch (SQLException e) {
+                        System.out.println("OOPS! Something went wrong" + e.getMessage());
+                    }
+
 
                 } else if (subChoice == 5) {
+                    scanner.nextLine();
+                    System.out.println("Enter the username");
+                    String username = scanner.nextLine();
+                    System.out.println("Enter the password");
+                    String password = scanner.nextLine();
+                    Administrator administrator = new Administrator(username, password);
+                    try {
+                        boolean isQueryPerformed;
+                        isQueryPerformed = administratorDataMethods.addNewAdministrator(DatabaseConnection.getConnection(), administrator);
+                        if (isQueryPerformed) System.out.println("New Administrator set successfully");
+                    } catch (SQLException e) {
+                        System.out.println("OOPS! Something went wrong" + e.getMessage());
+                    }
 
                 } else {
                     System.out.println("Sorry wrong choice entered");
