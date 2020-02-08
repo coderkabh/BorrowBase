@@ -20,6 +20,9 @@ import data.Transaction;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+//All imports
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 public class BorrowBaseMain {
     public static void main(String[] args) {
         System.out.println("Welcome to BorrowBase \n");
@@ -33,12 +36,17 @@ public class BorrowBaseMain {
         AdminPrivilegeMethods adminPrivilegeMethods = new AdminPrivilegeMethods();
         NaiveUsersDataMethods naiveUsersDataMethods = new NaiveUsersDataMethods();
         AdministratorDataMethods administratorDataMethods = new AdministratorDataMethods();
+        //All Constructor Calls
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
         try {
             databaseConnection.establishConnection();
         } catch (SQLException e) {
             System.out.println("Connection not Established ");
         }
+        //Autoconnect code for startup
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
         do {
@@ -51,6 +59,9 @@ public class BorrowBaseMain {
             System.out.println("5. Developer Settings ");
             System.out.println("6. Exit");
             choice = scanner.nextInt();
+            //All Main Choices
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
             if (choice == 1) {
                 try {
@@ -92,7 +103,7 @@ public class BorrowBaseMain {
                 }
             } else if (choice == 2) {
                 try {
-
+                    scanner.nextLine();
                     String customerID2 = transactionDataMethods.getCustomerIDFromUser();
                     int newRemAmt = transactionDataMethods.getRemAmtFromUser();
                     Transaction transaction = new Transaction(customerID2, newRemAmt);
