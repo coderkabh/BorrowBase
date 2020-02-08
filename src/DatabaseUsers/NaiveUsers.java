@@ -31,6 +31,14 @@ public class NaiveUsers {
         this.password = password;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+
     public void createNewNaiveUser(NaiveUsers naiveUsers) {
 
     }
