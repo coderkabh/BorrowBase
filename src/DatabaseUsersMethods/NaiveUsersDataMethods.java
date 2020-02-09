@@ -22,4 +22,14 @@ public class NaiveUsersDataMethods {
         return rowsReturned >= 1;
 
     }
+
+    public boolean checkNaiveUserAuthenticity(Connection connection, NaiveUsers naiveUsers) throws SQLException {
+        String query = "SELECT * FROM ADMIN_DB_USERS WHERE USERNAME = (?) AND PASSWORD = (?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, naiveUsers.getUsername());
+        preparedStatement.setString(2, naiveUsers.getPassword());
+        int rowsReturned = preparedStatement.executeUpdate();
+        return rowsReturned == 1;
+
+    }
 }

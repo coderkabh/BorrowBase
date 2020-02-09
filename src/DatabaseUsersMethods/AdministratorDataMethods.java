@@ -22,4 +22,14 @@ public class AdministratorDataMethods {
         return rowsReturned >= 1;
 
     }
+
+    public boolean checkAdminUserAuthenticity(Connection connection, Administrator administrator) throws SQLException {
+        String query = "SELECT * FROM ADMIN_DB_USERS WHERE USERNAME = (?) AND PASSWORD = (?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, administrator.getUsername());
+        preparedStatement.setString(2, administrator.getPassword());
+        int rowsReturned = preparedStatement.executeUpdate();
+        return rowsReturned == 1;
+
+    }
 }
