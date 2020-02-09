@@ -88,11 +88,14 @@ public class BorrowBaseMain {
                     //Takes the remaining balance for the account
                     Transaction transaction = new Transaction(customerID, remAmt);
 
-                    transactionDataMethods.addNewTransactionData(DatabaseConnection.getConnection(), transaction);
+                    boolean isTrue = transactionDataMethods.addNewTransactionData(DatabaseConnection.getConnection(), transaction);
+                    if (customerDataMethods.isNewEnterInCustomerCreated() && isTrue) {
+                        System.out.println("Entry created successfully");
+                    } else {
+                        System.out.println("Entry not created");
+                    }
                 } catch (SQLException e) {
                     System.out.println("SQL Exception occurred" + e.getMessage());
-                } catch (Exception e) {
-                    System.out.println("OOPS! Something went wrong");
                 }
             } else if (choice == 2) {
                 boolean isTrue = false;

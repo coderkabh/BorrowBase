@@ -12,24 +12,27 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class TransactionDataMethods {
-    public boolean isQueryPerformed1 = false;
+
     public boolean isQueryPerformed2 = false;
     Scanner scanner = new Scanner(System.in);
 
-    public void addNewTransactionData(Connection connection, Transaction transaction) throws SQLException {
-        String stringQuery = "INSERT INTO TRANSACTION (c_id, rem_amt) VALUES (?,?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(stringQuery);
-        preparedStatement.setString(1, transaction.getCustomerID());
+    public boolean addNewTransactionData(Connection connection, Transaction transaction) {
+        boolean isQueryPerformed = false;
+        try {
+            String stringQuery = "INSERT INTO TRANSACTION (c_id, rem_amt) VALUES (?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(stringQuery);
+            preparedStatement.setString(1, transaction.getCustomerID());
 //        preparedStatement.setInt(2,transaction.getDeposited());
-        preparedStatement.setInt(2, transaction.getRemAmt());
-        int rowsAffected = preparedStatement.executeUpdate();
-        isQueryPerformed1 = rowsAffected >= 1;
+            preparedStatement.setInt(2, transaction.getRemAmt());
+            int rowsAffected = preparedStatement.executeUpdate();
+            isQueryPerformed = rowsAffected >= 1;
+        } catch (SQLException e) {
+            System.out.println("SQL Exception occurred");
+        }
+        return isQueryPerformed;
 
     }
 
-    public boolean isTransactionDataInserted() {
-        return isQueryPerformed1;
-    }
 
     public void alterTransactionDataByDeposition(Connection connection, Transaction transaction) throws SQLException {
         String stringQuery = "UPDATE TRANSACTION set TRANSACTION.rem_amt = ? WHERE  c_id = ?;";
@@ -48,9 +51,6 @@ public class TransactionDataMethods {
         return scanner.nextInt();
     }
 
-    public boolean isAddNewTransactionDataInserted() {
-        return isQueryPerformed1;
-    }
 
     public boolean isAlterTransactionPerformed() {
         return isQueryPerformed2;

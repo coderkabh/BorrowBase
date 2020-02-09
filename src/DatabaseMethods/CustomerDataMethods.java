@@ -21,6 +21,7 @@ public class CustomerDataMethods {
      * */
     public void addNewCustomer(Connection connection, Customer customer) throws SQLException {
 
+
         String queryStatement = "INSERT INTO CUSTOMER (c_id,c_name,c_add,c_phno) VALUES (?,?,?,?);";
         PreparedStatement preparedStatement = connection.prepareStatement(queryStatement);
         preparedStatement.setString(1, customer.getCustomerID().trim());
