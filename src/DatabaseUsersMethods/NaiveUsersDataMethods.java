@@ -10,6 +10,7 @@ import DatabaseUsers.NaiveUsers;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class NaiveUsersDataMethods {
@@ -24,12 +25,20 @@ public class NaiveUsersDataMethods {
     }
 
     public boolean checkNaiveUserAuthenticity(Connection connection, NaiveUsers naiveUsers) throws SQLException {
-        String query = "SELECT * FROM ADMIN_DB_USERS WHERE USERNAME = (?) AND PASSWORD = (?);";
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, naiveUsers.getUsername());
-        preparedStatement.setString(2, naiveUsers.getPassword());
-        int rowsReturned = preparedStatement.executeUpdate();
-        return rowsReturned == 1;
+        ResultSet rowsReturned = null;
+        try {
+            String query = "SELECT * FROM NAIVE_DB_USERS WHERE USERNAME = (?) AND PASSWORD = (?);";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, naiveUsers.getUsername());
+            preparedStatement.setString(2, naiveUsers.getPassword());
+            rowsReturned = preparedStatement.executeQuery();
 
+        } catch (SQLException e) {
+            System.out.println("OOPS! Something went wrong");
+        }
+        if (rowsReturned == null) {
+            return false;
+        } else return rowsReturned.first();
     }
+
 }

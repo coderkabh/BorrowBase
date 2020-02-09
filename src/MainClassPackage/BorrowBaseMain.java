@@ -24,7 +24,7 @@ import java.util.Scanner;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 public class BorrowBaseMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         System.out.println("Welcome to BorrowBase \n");
         int choice = 0;
         int subChoice = 0;
@@ -70,13 +70,6 @@ public class BorrowBaseMain {
                     String customerName = customerDataMethods.getCustomerNameFromUser();
                     String customerAdd = customerDataMethods.getCustomerAddFromUser();
                     String customerPhno = customerDataMethods.getCustomerPhnoFromUser();
-/*
-                    These 4 lines takes input from user by calling those getter methods
-                    System.out.println(customerID);
-                    System.out.println(customerName);
-                    System.out.println(customerAdd);
-                    System.out.println(customerPhno);
-*/
 
                     Customer customer = new Customer(customerID, customerName, customerAdd, customerPhno);
                     //Constructor to initialize the Customer class
@@ -102,20 +95,31 @@ public class BorrowBaseMain {
                     System.out.println("OOPS! Something went wrong");
                 }
             } else if (choice == 2) {
-                try {
-                    scanner.nextLine();
-                    String customerID2 = transactionDataMethods.getCustomerIDFromUser();
-                    int newRemAmt = transactionDataMethods.getRemAmtFromUser();
-                    Transaction transaction = new Transaction(customerID2, newRemAmt);
-                    //Takes values from user
-                    transactionDataMethods.alterTransactionDataByDeposition(DatabaseConnection.getConnection(), transaction);
-                    //Changes the data in Database
-
-                } catch (SQLException e) {
-                    System.out.println("SQL Exception occurred" + e.getMessage());
-                } catch (Exception e) {
-                    System.out.println("OOPS! Something went wrong");
-                }
+                boolean isTrue = false;
+                scanner.nextLine();
+                System.out.println("Enter the Naive user's username");
+                String username = scanner.nextLine();
+                System.out.println("Enter the Naive user's password");
+                String password = scanner.nextLine();
+                NaiveUsers naiveUsers = new NaiveUsers(username, password);
+                isTrue = naiveUsersDataMethods.checkNaiveUserAuthenticity(DatabaseConnection.getConnection(), naiveUsers);
+                if (isTrue) {
+                    try {
+                        String customerID2 = transactionDataMethods.getCustomerIDFromUser();
+                        int newRemAmt = transactionDataMethods.getRemAmtFromUser();
+                        Transaction transaction = new Transaction(customerID2, newRemAmt);
+                        //Takes values from user
+                        transactionDataMethods.alterTransactionDataByDeposition(DatabaseConnection.getConnection(), transaction);
+                        //Changes the data in Database
+                        if (transactionDataMethods.isAlterTransactionPerformed()) {
+                            System.out.println("Account data modified successfully");
+                        }
+                    } catch (SQLException e) {
+                        System.out.println("SQL Exception occurred" + e.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("OOPS! Something went wrong");
+                    }
+                } else System.out.println("Sorry! Either Username or Password is wrong.");
             } else if (choice == 3) {
                 try {
                     transactionDataMethods.getAllTransactionData(DatabaseConnection.getConnection());
@@ -149,29 +153,47 @@ public class BorrowBaseMain {
                     } catch (SQLException e) {
                         System.out.println("SQL Exception occurred");
                     } catch (Exception e) {
-                        System.out.println("OOPS! Something went wrong");
+                        System.out.println();
                     }
 
                 } else if (subChoice == 3) {
+                    scanner.nextLine();
+                    System.out.println("Enter the Administrator Username");
+                    String username = scanner.nextLine();
+                    System.out.println("Enter the Administrator Password");
+                    String password = scanner.nextLine();
+                    Administrator administrator = new Administrator(username, password);
+                    boolean isTrue = false;
                     try {
-
-                        System.out.println("Remember once done it's not possible to revert back and undo changes.\n" +
-                                "It is advised to think twice before taking this step. We do not recommend you to flush" +
-                                "unless you want to have a fresh start or stop using this software. ");
-                        System.out.println("Would you like to Flush all data ?" +
-                                "\nType \"y\" or \"Y\" to continue or press any alphabet or numeric key for cancel.");
-                        scanner.nextLine();
-                        String string = scanner.nextLine();
-                        System.out.println(string);
-                        if (string.equalsIgnoreCase("y")) {
-                            boolean isDeleted = adminPrivilegeMethods.deleteAllCustomerData(DatabaseConnection.getConnection());
-                            boolean isDeleted2 = adminPrivilegeMethods.deleteAllTransactionData(DatabaseConnection.getConnection());
-                            if (isDeleted && isDeleted) System.out.println("Database flushed successfully");
-                            else System.out.println("Couldn't flush");
-                        } else System.out.println("Flush operation cancelled by user");
+                        isTrue = administratorDataMethods.checkAdminUserAuthenticity(DatabaseConnection.getConnection(), administrator);
                     } catch (SQLException e) {
                         System.out.println("OOPS! Something went wrong" + e.getMessage());
                     }
+
+                    if (isTrue) {
+                        try {
+
+                            System.out.println("Remember once done it's not possible to revert back and undo changes.\n" +
+                                    "It is advised to think twice before taking this step. We do not recommend you to flush" +
+                                    "unless you want to have a fresh start or stop using this software. ");
+                            System.out.println("Would you like to Flush all data ?" +
+                                    "\nType \"y\" or \"Y\" to continue or press any alphabet or numeric key for cancel.");
+                            scanner.nextLine();
+                            String string = scanner.nextLine();
+                            System.out.println(string);
+                            if (string.equalsIgnoreCase("y")) {
+                                boolean isDeleted = adminPrivilegeMethods.deleteAllCustomerData(DatabaseConnection.getConnection());
+                                boolean isDeleted2 = adminPrivilegeMethods.deleteAllTransactionData(DatabaseConnection.getConnection());
+                                if (isDeleted && isDeleted) System.out.println("Database flushed successfully");
+                                else System.out.println("Couldn't flush");
+                            } else System.out.println("Flush operation cancelled by user");
+                        } catch (SQLException e) {
+                            System.out.println("OOPS! Something went wrong" + e.getMessage());
+                        }
+                    } else {
+                        System.out.println("Sorry either username or password is wrong");
+                    }
+
 
                 } else if (subChoice == 4) {
                     scanner.nextLine();

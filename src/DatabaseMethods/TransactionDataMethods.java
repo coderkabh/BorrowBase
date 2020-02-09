@@ -52,7 +52,7 @@ public class TransactionDataMethods {
         return isQueryPerformed1;
     }
 
-    public boolean isAlterTransactionDataByDepositionPerformed() {
+    public boolean isAlterTransactionPerformed() {
         return isQueryPerformed2;
     }
 

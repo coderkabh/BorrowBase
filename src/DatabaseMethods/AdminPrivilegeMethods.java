@@ -27,6 +27,7 @@ public class AdminPrivilegeMethods {
         Statement statement = connection.createStatement();
         rowsAffected = statement.executeUpdate(query);
         return rowsAffected >= 1;
+
     }
 }
 

@@ -10,6 +10,7 @@ import DatabaseUsers.Administrator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdministratorDataMethods {
@@ -28,8 +29,8 @@ public class AdministratorDataMethods {
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, administrator.getUsername());
         preparedStatement.setString(2, administrator.getPassword());
-        int rowsReturned = preparedStatement.executeUpdate();
-        return rowsReturned == 1;
+        ResultSet rowsReturned = preparedStatement.executeQuery();
+        return rowsReturned.first();
 
     }
 }
