@@ -15,9 +15,15 @@ public class AdminPrivilegeMethods {
 
     public boolean deleteAllTransactionData(Connection connection) throws SQLException {
         int rowsAffected = 0;
-        String query = "DELETE FROM TRANSACTION";
-        Statement statement = connection.createStatement();
-        rowsAffected = statement.executeUpdate(query);
+        try {
+
+            String query = "DELETE FROM TRANSACTION";
+            Statement statement = connection.createStatement();
+            rowsAffected = statement.executeUpdate(query);
+
+        } catch (SQLException e) {
+            System.out.println("SQL Exception occurred" + e.getMessage());
+        }
         return rowsAffected >= 1;
     }
 
