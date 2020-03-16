@@ -38,8 +38,7 @@ CREATE TABLE `ADMIN_DB_USERS` (
 --
 
 INSERT INTO `ADMIN_DB_USERS` (`USERNAME`, `PASSWORD`) VALUES
-('Admin', 'admin'),
-('hello', 'world');
+('admin','borrowBase@456');
 
 -- --------------------------------------------------------
 
@@ -54,15 +53,6 @@ CREATE TABLE `CUSTOMER` (
   `c_phno` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `CUSTOMER`
---
-
-INSERT INTO `CUSTOMER` (`c_id`, `c_name`, `c_add`, `c_phno`) VALUES
-('1000', 'Abhishek', 'Jhansi', '123456789'),
-('12', 'gdfg', 'fsdfgd', '6664655'),
-('1234', 'Mayank', 'AMU Adfsd', '5436'),
-('1235', 'dgh', 'fyhbhj', '655');
 
 -- --------------------------------------------------------
 
@@ -75,14 +65,6 @@ CREATE TABLE `NAIVE_DB_USERS` (
   `PASSWORD` varchar(30) NOT NULL DEFAULT 'password'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `NAIVE_DB_USERS`
---
-
-INSERT INTO `NAIVE_DB_USERS` (`USERNAME`, `PASSWORD`) VALUES
-('asfs', '4edgdh'),
-('Kabh', 'zxcvbnm'),
-('saurabh', 'zxcvbnm00');
 
 -- --------------------------------------------------------
 
@@ -95,14 +77,6 @@ CREATE TABLE `TRANSACTION` (
   `rem_amt` int(6) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `TRANSACTION`
---
-
-INSERT INTO `TRANSACTION` (`c_id`, `rem_amt`) VALUES
-('1000', 12000),
-('1234', 0),
-('1235', 400);
 
 --
 -- Indexes for dumped tables
