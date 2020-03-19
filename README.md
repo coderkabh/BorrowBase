@@ -9,7 +9,7 @@
 ### > It is made on the concepts of OOPS by using JAVA v11.0.5
 ### > It will work on localhost ( 127.0.0.1 ).
 ### > It uses JDBC and My-SQL for Databse connectivity.
-### > The Project is missing the SQL file ( and option for creating database ) however you can run the commands listed in the file.
+
 
 
 ## Prerequisites:
